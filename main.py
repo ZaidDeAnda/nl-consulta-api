@@ -21,7 +21,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 # Cargar el archivo JSON
-file = "data.json"
+file = "data_good.json"
 print(f"file location: {file}")
 data = pd.read_json(file, encoding="utf-8")
 data = data.fillna(value=0)
