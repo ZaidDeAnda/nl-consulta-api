@@ -1,0 +1,10 @@
+2023-12-18 00:59:22,645 - my_logger - INFO - Se recibió request de toda la tabla
+2023-12-18 01:00:08,560 - my_logger - INFO - Se recibio request de toda la tabla
+2023-12-18 01:01:36,042 - my_logger - INFO - Se recibio un request con metodo curp
+2023-12-18 01:08:44,628 - my_logger - INFO - Se recibio un request con metodo curp
+2023-12-18 01:16:29,956 - my_logger - INFO - Se recibio un request con metodo nombres
+2023-12-18 01:16:29,956 - my_logger - ERROR - Se recibio un request con metodo nombres pero no fue encontrado
+2023-12-18 02:04:54,609 - my_logger - INFO - Se recibio un request con metodo nombres
+2023-12-18 02:04:54,609 - my_logger - ERROR - Se recibio un request con metodo nombres pero no fue encontrado
+2023-12-18 02:06:26,167 - my_logger - INFO - Se recibio un request con metodo nombres
+2023-12-18 02:07:01,613 - my_logger - INFO - Se recibio un request con metodo nombres
