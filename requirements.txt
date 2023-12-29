@@ -1,3 +1,4 @@
 fastAPI
 uvicorn
 pandas
+gunicorn
