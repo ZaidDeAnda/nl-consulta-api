@@ -82,7 +82,7 @@ async def buscar_registros(
         end_idx = total_records
 
     paginated_data = filtered_data.iloc[start_idx:end_idx]
-    final_data = paginated_data.to_dict(orient="records")
+    final_data = paginated_data.to_dict(orient="records")[0]
     return JSONResponse(content=final_data)
 
 if __name__ == "__main__":
