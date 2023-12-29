@@ -5,6 +5,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import pandas as pd
 import re
+import os
 import urllib.parse
 
 app = FastAPI()
@@ -20,7 +21,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 # Cargar el archivo JSON
-file = "data.json"
+file = os.getcwd()+"/data.json"
 data = pd.read_json(file, encoding="utf-8")
 data = data.fillna(value=0)
 
