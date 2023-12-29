@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse
 from typing import Optional
 import uvicorn
 import logging
@@ -82,7 +83,7 @@ async def buscar_registros(
 
     paginated_data = filtered_data.iloc[start_idx:end_idx]
     final_data = paginated_data.to_dict(orient="records")
-    return final_data
+    return JSONResponse(content=final_data)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
