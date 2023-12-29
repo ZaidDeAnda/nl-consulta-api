@@ -10,8 +10,6 @@ import urllib.parse
 
 app = FastAPI()
 
-print(os.path.abspath(__file__))
-
 # Configuración de logging
 logger = logging.getLogger("my_logger")
 logger.setLevel(logging.DEBUG)
@@ -24,7 +22,7 @@ logger.addHandler(handler)
 
 # Cargar el archivo JSON
 file = os.getcwd()+"/data.json"
-print(f"file location:")
+print(f"file location: {file}")
 data = pd.read_json(file, encoding="utf-8")
 data = data.fillna(value=0)
 
