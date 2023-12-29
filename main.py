@@ -40,7 +40,6 @@ def validate_curp(curp):
 async def buscar_registros(
     metodo: Optional[str] = None,
     valor: Optional[str] = None,
-    valor2: Optional[str] = None,
     page: int = 1,
     page_size: int = 10,
 ):
@@ -58,22 +57,20 @@ async def buscar_registros(
         if metodo not in ("apellidos", "nombres", "curp"):
             logger.error(f"Se recibio un request con método inválido {metodo}")
             raise HTTPException(status_code=400, detail="Método de búsqueda no válido")
-        try:
-            logger.info(f"Se recibio un request con metodo {metodo}")
-            valor = urllib.parse.unquote(valor)
-            if metodo == "apellidos":
-                filtered_data = data.loc[data["ap_materno"] == valor]
-                filtered_data = filtered_data.loc[filtered_data["ap_paterno"] == valor2]
-            elif metodo == "nombres":
-                filtered_data = data.loc[data["nombres"] == valor]
-            elif metodo == "curp":
-                if not validate_curp(valor):
-                    logger.error(f"Se recibio un request con metodo {metodo} pero el curp no tenia un formato valido")
-                    logger.error(f"Curp enviado: {valor}")
-                    raise HTTPException(status_code=400, detail="CURP no válido")
-                filtered_data = data.loc[data["CURP"] == valor]
-            total_records = len(filtered_data)
-        except:
+        logger.info(f"Se recibio un request con metodo {metodo}")
+        valor = urllib.parse.unquote(valor)
+        if metodo == "apellidos":
+            filtered_data = data.loc[(data["ap_materno"] + data["ap_paterno"]) == valor]
+        elif metodo == "nombres":
+            filtered_data = data.loc[data["nombres"] == valor]
+        elif metodo == "curp":
+            if not validate_curp(valor):
+                logger.error(f"Se recibio un request con metodo {metodo} pero el curp no tenia un formato valido")
+                logger.error(f"Curp enviado: {valor}")
+                raise HTTPException(status_code=400, detail="CURP no válido")
+            filtered_data = data.loc[data["CURP"] == valor]
+        total_records = len(filtered_data)
+        if total_records < 1:
             logger.error(f"Se recibio un request con metodo {metodo} pero no fue encontrado")
             raise HTTPException(status_code=404, detail=f"{metodo} no encontrado")
     
