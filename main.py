@@ -26,6 +26,7 @@ basePath = os.path.dirname(os.path.abspath(__file__))
 file = basePath+"/data_good.json"
 print(f"file location: {file}")
 data = pd.read_json(file, encoding="utf-8")
+data["apellidos"] = data["ap_materno"] + " " + data["ap_paterno"]
 data = data.fillna(value=0)
 
 # Expresión regular para validar CURP
@@ -61,7 +62,7 @@ async def buscar_registros(
         logger.info(f"Se recibio un request con metodo {metodo}")
         valor = urllib.parse.unquote(valor)
         if metodo == "apellidos":
-            filtered_data = data.loc[(data["ap_materno"] + data["ap_paterno"]) == valor]
+            filtered_data = data.loc[data["apellidos"] == valor]
         elif metodo == "nombres":
             filtered_data = data.loc[data["nombres"] == valor]
         elif metodo == "curp":
