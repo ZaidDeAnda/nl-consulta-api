@@ -9,7 +9,42 @@ import re
 import os
 import urllib.parse
 
-app = FastAPI()
+description = """
+API de búsqueda para trámites de la Secretaria de Igualdad e Inclusión del gobierno de Nuevo León. 🦁´
+
+Tiene un único endpoint, **/buscar**
+
+## Buscar
+
+Puedes buscar usuarios que hayan sigo acreedores o estén en proceso de un trámite de la secretaria.
+Tiene 3 opciones de búsqueda:
+
+* CURP
+* Nombres
+* Apellidos
+
+Para seleccionar la opción de búsqueda, basta con mandar como parámetro en la url el método, es decir:
+
+https://url/buscar?metodo=curp
+
+Si no se selecciona ninguna opción, le hará query de todos los usuarios en la DB. Para no sobrecargar la respuesta,
+los usuarios que regresa están paginados. Los parámetros usados en la paginación son:
+
+* page
+* page_size
+
+También pueden ser agregados como parámetro en la url.
+"""
+
+app = FastAPI(
+    title="API de búsqueda SII",
+    description=description,
+    version="0.0.1",
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "Zaid De Anda, desarrollador",
+        "email": "zaidy.deanda@gmail.com",
+    })
 
 # Configuración de logging
 logger = logging.getLogger("my_logger")
