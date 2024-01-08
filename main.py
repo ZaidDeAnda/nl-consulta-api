@@ -119,7 +119,13 @@ async def buscar_registros(
 
     paginated_data = filtered_data.iloc[start_idx:end_idx]
     final_data = paginated_data.to_dict(orient="records")[0]
-    return JSONResponse(content=final_data)
+    response = {
+        "status" : "success",
+        "data" : final_data,
+        "mensaje" : "Query realizado con éxito",
+        "status_code" : 200
+    }
+    return JSONResponse(content=response)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
