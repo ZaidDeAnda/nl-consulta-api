@@ -65,7 +65,7 @@ data["apellidos"] = data["ap_materno"] + " " + data["ap_paterno"]
 data = data.fillna(value=0)
 
 # Expresión regular para validar CURP
-CURP_REGEX = r'^[A-Z]{4}\d{6}[HM][A-Z]{5}[0-9A-Z]\d$'
+CURP_REGEX = r'^[A-Z]{4}\d{6}[HM][A-Z]{5}\d{2}$'
 
 def validate_curp(curp):
     if re.match(CURP_REGEX, curp):
