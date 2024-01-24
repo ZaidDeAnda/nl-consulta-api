@@ -82,6 +82,7 @@ async def buscar_registros(
 ):
     start_idx = (page - 1) * page_size
     end_idx = start_idx + page_size
+    metodo = metodo.lower()
 
     if metodo is None:
         logger.info("Se recibio request de toda la tabla")
